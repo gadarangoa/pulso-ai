@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticia — Pulso IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Franklin:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<!-- El detalle pertenece a la sección "Noticias" del menú -->
+<body data-pagina="noticias">
+
+  <header id="encabezado" class="encabezado"></header>
+
+  <main class="seccion">
+    <div class="contenedor contenedor--angosto">
+      <!-- js/detalle.js lee el ?id= de la URL y construye aquí el artículo -->
+      <article class="articulo" id="articulo" aria-live="polite">
+        <p class="migas">Cargando noticia…</p>
+      </article>
+    </div>
+  </main>
+
+  <footer id="pie" class="pie"></footer>
+
+  <script src="js/noticias-semilla.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script src="js/detalle.js"></script>
+</body>
+</html>

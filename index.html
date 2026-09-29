@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pulso IA: noticias de inteligencia artificial explicadas en claro.">
+  <title>Pulso IA — Noticias de Inteligencia Artificial</title>
+  <!-- Tipografías de Google Fonts (si no hay internet, se usan las de respaldo del CSS) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Franklin:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<!-- data-pagina le dice a componentes.js qué enlace del menú marcar como activo -->
+<body data-pagina="inicio">
+
+  <header id="encabezado" class="encabezado"></header>
+
+  <main>
+    <!-- (b) Sección de bienvenida (hero) -->
+    <section class="hero">
+      <div class="contenedor">
+        <h1>Las noticias de <em>Inteligencia Artificial</em>, explicadas en claro</h1>
+        <p>Tendencias, comparativas, aplicaciones y herramientas de IA. Todo lo que necesitas
+           para entender la tecnología que está cambiando el mundo.</p>
+        <div class="hero__botones">
+          <a href="noticias.html" class="btn btn--primario">Explorar noticias</a>
+          <a href="contacto.html" class="btn btn--secundario">Contáctanos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- (c) Noticias destacadas: las tarjetas las crea js/inicio.js -->
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="titulo-seccion">
+          <h2>Noticias destacadas</h2>
+          <p>Lo más importante del mundo de la IA, seleccionado por nuestro equipo.</p>
+        </div>
+        <div class="cuadricula" id="destacadas" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- (d) Sección informativa -->
+    <section class="seccion" style="padding-top:0">
+      <div class="contenedor">
+        <div class="titulo-seccion">
+          <h2>¿Por qué Pulso IA?</h2>
+          <p>Nuestra sección informativa: lo que nos hace diferentes.</p>
+        </div>
+        <div class="valores">
+          <article class="valor">
+            <div class="valor__icono" aria-hidden="true">📰</div>
+            <h3>Información verificada</h3>
+            <p>Cada noticia cita su fuente original: medios especializados y organismos internacionales.</p>
+          </article>
+          <article class="valor">
+            <div class="valor__icono" aria-hidden="true">⚡</div>
+            <h3>Actualidad constante</h3>
+            <p>Cubrimos las tendencias de la IA a medida que ocurren: modelos, agentes, regulación y más.</p>
+          </article>
+          <article class="valor">
+            <div class="valor__icono" aria-hidden="true">🎓</div>
+            <h3>Explicado para todos</h3>
+            <p>Sin tecnicismos innecesarios: noticias redactadas en español claro para cualquier lector.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- (e) Banner de llamado a la acción -->
+    <section class="seccion" style="padding-top:0">
+      <div class="contenedor">
+        <div class="cta">
+          <div>
+            <h2>¿Conoces una noticia de IA que deberíamos cubrir?</h2>
+            <p>Escríbenos y nuestro equipo la investigará.</p>
+          </div>
+          <a href="contacto.html?asunto=Propuesta%20de%20noticia" class="btn btn--claro">Ir a contacto</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="pie" class="pie"></footer>
+
+  <!-- El orden importa: primero los datos, luego los componentes y al final la página -->
+  <script src="js/noticias-semilla.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script src="js/inicio.js"></script>
+</body>
+</html>

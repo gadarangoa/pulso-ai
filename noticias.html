@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias — Pulso IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Franklin:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="noticias">
+
+  <header id="encabezado" class="encabezado"></header>
+
+  <main class="seccion">
+    <div class="contenedor">
+      <!-- (a) Título y descripción -->
+      <div class="titulo-seccion">
+        <h1>Todas las noticias</h1>
+        <p>Explora el catálogo completo, filtra por categoría y gestiona las noticias de Pulso IA.</p>
+      </div>
+
+      <!-- (b) Filtros y (c) botón de creación.
+           Cada chip guarda su categoría en data-categoria -->
+      <div class="filtros" id="filtros" role="group" aria-label="Filtrar por categoría">
+        <button class="chip activo" data-categoria="Todas" aria-pressed="true">Todas</button>
+        <button class="chip" data-categoria="Tendencias" aria-pressed="false">Tendencias</button>
+        <button class="chip" data-categoria="Comparativas" aria-pressed="false">Comparativas</button>
+        <button class="chip" data-categoria="Aplicaciones" aria-pressed="false">Aplicaciones</button>
+        <button class="chip" data-categoria="Herramientas" aria-pressed="false">Herramientas</button>
+        <button class="chip" data-categoria="Ética y Regulación" aria-pressed="false">Ética y Regulación</button>
+        <button class="btn btn--primario" id="btnNueva">+ Nueva noticia</button>
+      </div>
+
+      <!-- (d) Cuadrícula: la llena js/noticias.js -->
+      <div class="cuadricula" id="listado" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <!-- Formulario de creación dentro de un <dialog> (ventana modal nativa de HTML5) -->
+  <dialog class="modal" id="modalNoticia" aria-labelledby="tituloModal">
+    <form id="formNoticia" novalidate>
+      <div class="modal__cabecera">
+        <h2 id="tituloModal">Nueva noticia</h2>
+        <button type="button" class="modal__cerrar" id="cerrarModal" aria-label="Cerrar">×</button>
+      </div>
+
+      <div class="modal__cuerpo">
+        <div class="campo">
+          <label for="nNombre">Titular <span class="req">*</span></label>
+          <input type="text" id="nNombre" name="nombre" maxlength="90" placeholder="Ej: Nuevo modelo de IA supera...">
+          <span class="error">Escribe un titular de al menos 10 caracteres.</span>
+        </div>
+
+        <div class="fila-campos">
+          <div class="campo">
+            <label for="nCategoria">Categoría <span class="req">*</span></label>
+            <select id="nCategoria" name="categoria">
+              <option value="">Selecciona una categoría</option>
+            </select>
+            <span class="error">Selecciona una categoría.</span>
+          </div>
+          <div class="campo">
+            <label for="nAutor">Autor</label>
+            <input type="text" id="nAutor" name="autor" placeholder="Equipo Pulso IA">
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="nResumen">Resumen <span class="req">*</span></label>
+          <input type="text" id="nResumen" name="resumen" maxlength="140" placeholder="Una frase que aparecerá en la tarjeta">
+          <span class="ayuda">Máximo 140 caracteres.</span>
+          <span class="error">Escribe un resumen de al menos 20 caracteres.</span>
+        </div>
+
+        <div class="campo">
+          <label for="nContenido">Contenido <span class="req">*</span></label>
+          <textarea id="nContenido" name="contenido" placeholder="Texto completo de la noticia. Separa los párrafos con una línea en blanco."></textarea>
+          <span class="error">El contenido debe tener al menos 50 caracteres.</span>
+        </div>
+
+        <div class="fila-campos">
+          <div class="campo">
+            <label for="nImagen">Imagen</label>
+            <select id="nImagen" name="imagen">
+              <option value="img/generica.jpg">Imagen genérica Pulso IA</option>
+              <option value="img/razonamiento.jpg">Cerebro digital</option>
+              <option value="img/comparativa-chatbots.jpg">Teléfono móvil</option>
+              <option value="img/ia-medicina.jpg">Equipo médico</option>
+              <option value="img/tutores-educacion.jpg">Portátil</option>
+              <option value="img/herramientas-estudiantes.jpg">Escritorio</option>
+              <option value="img/agentes-ia.jpg">Robot</option>
+              <option value="img/regulacion-latam.jpg">Justicia</option>
+              <option value="img/generadores-imagenes.jpg">Arte abstracto</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="nFuente">Fuente</label>
+            <input type="text" id="nFuente" name="fuente" placeholder="Ej: Wired">
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="nUrlFuente">Enlace de la fuente</label>
+          <input type="url" id="nUrlFuente" name="urlFuente" placeholder="https://...">
+          <span class="error">Escribe un enlace válido que empiece por http:// o https://</span>
+        </div>
+      </div>
+
+      <div class="modal__pie">
+        <button type="button" class="btn btn--secundario" id="cancelarModal">Cancelar</button>
+        <button type="submit" class="btn btn--primario">Publicar noticia</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer id="pie" class="pie"></footer>
+
+  <script src="js/noticias-semilla.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/noticias.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — Pulso IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Franklin:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="contacto">
+
+  <header id="encabezado" class="encabezado"></header>
+
+  <main class="seccion">
+    <div class="contenedor">
+      <div class="titulo-seccion">
+        <h1>Contacto</h1>
+        <p>¿Tienes preguntas o una noticia para compartir? Escríbenos.</p>
+      </div>
+
+      <div class="contacto-grid">
+        <!-- (b) Formulario. "novalidate" desactiva la validación nativa
+             para que la haga nuestro JavaScript con mensajes propios -->
+        <form class="panel" id="formContacto" novalidate>
+          <!-- (c) Mensaje de confirmación: oculto hasta que el envío sea válido -->
+          <div class="alerta alerta--exito" id="exito" role="status" hidden>
+            ✔ ¡Gracias! Tu mensaje ha sido enviado correctamente. Te responderemos pronto.
+          </div>
+
+          <div class="campo">
+            <label for="nombre">Nombre completo <span class="req">*</span></label>
+            <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" autocomplete="name">
+            <span class="error">Escribe tu nombre (mínimo 3 caracteres).</span>
+          </div>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico <span class="req">*</span></label>
+            <input type="email" id="correo" name="correo" placeholder="nombre@dominio.com" autocomplete="email">
+            <span class="ayuda">Debe ser un correo válido, por ejemplo: nombre@dominio.com</span>
+            <span class="error">El correo no es válido. Ejemplo: nombre@dominio.com</span>
+          </div>
+
+          <div class="campo">
+            <label for="asunto">Asunto</label>
+            <input type="text" id="asunto" name="asunto" placeholder="¿Sobre qué nos escribes?">
+          </div>
+
+          <div class="campo">
+            <label for="mensaje">Mensaje <span class="req">*</span></label>
+            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte"></textarea>
+            <span class="error">Escribe un mensaje de al menos 10 caracteres.</span>
+          </div>
+
+          <button type="submit" class="btn btn--primario">Enviar mensaje</button>
+        </form>
+
+        <!-- (d) Columna lateral con la información del equipo -->
+        <aside class="info-contacto">
+          <h2>Información de contacto</h2>
+          <div class="info-item">
+            <div class="valor__icono" aria-hidden="true">✉</div>
+            <div><strong>hola@pulsoia.com</strong><span>Correo del equipo editorial</span></div>
+          </div>
+          <div class="info-item">
+            <div class="valor__icono" aria-hidden="true">📍</div>
+            <div><strong>Colombia</strong><span>Cobertura para toda Latinoamérica</span></div>
+          </div>
+          <div class="info-item">
+            <div class="valor__icono" aria-hidden="true">🕐</div>
+            <div><strong>24 – 48 horas</strong><span>Tiempo promedio de respuesta</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer id="pie" class="pie"></footer>
+
+  <script src="js/noticias-semilla.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/contacto.js"></script>
+</body>
+</html>

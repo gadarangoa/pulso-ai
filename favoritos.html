@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis favoritos — Pulso IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Franklin:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="favoritos">
+
+  <header id="encabezado" class="encabezado"></header>
+
+  <main class="seccion">
+    <div class="contenedor">
+      <!-- (a) Título y descripción -->
+      <div class="titulo-seccion">
+        <h1>Mis favoritos</h1>
+        <p>Tus noticias guardadas, disponibles en cualquier momento desde este navegador.</p>
+      </div>
+
+      <!-- (b) Indicador con el número de guardadas -->
+      <div class="alerta alerta--marca" id="contador" role="status"></div>
+
+      <!-- (c) Cuadrícula de favoritas -->
+      <div class="cuadricula" id="favoritos"></div>
+    </div>
+  </main>
+
+  <footer id="pie" class="pie"></footer>
+
+  <script src="js/noticias-semilla.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script src="js/favoritos.js"></script>
+</body>
+</html>

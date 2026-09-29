@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acerca de — Pulso IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Franklin:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="acerca">
+
+  <header id="encabezado" class="encabezado"></header>
+
+  <main>
+    <!-- (a) y (b) Presentación del proyecto -->
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="titulo-seccion">
+          <h1>Acerca de Pulso IA</h1>
+          <p>Quiénes somos y por qué hacemos esto.</p>
+        </div>
+        <div class="acerca__texto">
+          <p>Pulso IA es una plataforma web de noticias dedicada exclusivamente a la inteligencia
+             artificial. Nuestro objetivo es acercar esta tecnología a todas las personas: cubrimos
+             las tendencias que marcan la industria, comparamos las herramientas más usadas,
+             mostramos aplicaciones reales en salud y educación, y seguimos de cerca la regulación
+             en América Latina y el mundo.</p>
+          <p class="destacado">Cada noticia cita su fuente original y está redactada en español claro,
+             sin tecnicismos innecesarios. Este proyecto fue desarrollado como parte del módulo de
+             Desarrollo Front-end.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- (c) Glosario IA -->
+    <section class="seccion" style="padding-top:0">
+      <div class="contenedor">
+        <div class="titulo-seccion">
+          <h2>Glosario IA</h2>
+          <p>Los términos clave para entender nuestras noticias.</p>
+        </div>
+        <!-- <dl> (lista de definiciones) es la etiqueta semántica ideal para un glosario,
+             pero usamos <article> para poder darle a cada término su tarjeta -->
+        <div class="glosario">
+          <article class="termino">
+            <h3>LLM</h3>
+            <p>Modelo de lenguaje de gran escala: el motor detrás de asistentes como Claude o
+               ChatGPT, entrenado con enormes cantidades de texto.</p>
+          </article>
+          <article class="termino">
+            <h3>Prompt</h3>
+            <p>La instrucción o pregunta que el usuario escribe a la IA. Un buen prompt produce
+               mejores respuestas.</p>
+          </article>
+          <article class="termino">
+            <h3>Token</h3>
+            <p>La unidad mínima de texto que procesa un modelo: una palabra o fragmento de palabra.
+               Los modelos cobran y miden por tokens.</p>
+          </article>
+          <article class="termino">
+            <h3>Alucinación</h3>
+            <p>Cuando un modelo genera información falsa con apariencia de verdad. Por eso siempre
+               hay que verificar las fuentes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="pie" class="pie"></footer>
+
+  <script src="js/noticias-semilla.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script>iniciarPagina();</script>
+</body>
+</html>
