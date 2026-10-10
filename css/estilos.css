@@ -35,6 +35,44 @@
   --radio: 6px;
   --ancho-max: 1080px;
   --sombra: 0 1px 2px rgba(17, 17, 17, .04), 0 4px 14px rgba(17, 17, 17, .05);
+
+  /* Variables de ROL: no cambian con el tema.
+     --blanco y --tinta se invierten en modo oscuro, pero algunos elementos
+     (footer, banner, aviso y el texto de los botones rojos) deben verse
+     siempre oscuros o siempre claros. Para ellos usamos estas dos. */
+  --superficie-oscura: #111111;
+  --texto-claro: #FFFFFF;
+  --texto-claro-suave: #D1D5DB;
+  /* Rojo para TEXTO. En modo claro es el mismo color de marca; en modo
+     oscuro se aclara, porque el rojo de los botones no alcanza el contraste
+     mínimo (4.5:1, WCAG AA) sobre fondo oscuro en textos pequeños. */
+  --rojo-texto: var(--rojo);
+
+  /* Le dice al navegador que dibuje los controles nativos (barras de
+     desplazamiento, select, checkbox) en versión clara */
+  color-scheme: light;
+}
+
+/* 1.1 MODO OSCURO (aporte propio) ---------------------------------- */
+/* js/tema.js pone data-tema="oscuro" en la etiqueta <html>.
+   Como todo el sitio usa variables, basta con redefinirlas aquí:
+   no hace falta tocar ningún componente. */
+[data-tema="oscuro"] {
+  --blanco: #16171B;         /* fondo general */
+  --tinta: #F3F4F6;          /* texto principal */
+  --gris: #A1A1AA;
+  --linea: #2E3038;
+  --rojo: #E11D48;           /* un rojo más brillante para que contraste sobre fondo oscuro */
+  --rojo-oscuro: #BE123C;
+  --rojo-suave: #3A1219;
+  --fondo-suave: #1F2026;
+  --verde: #4ADE80;
+  --verde-suave: #0F2A1A;
+  --sombra: 0 1px 2px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .35);
+
+  --rojo-texto: #FB7185;
+  --superficie-oscura: #0B0B0E;
+  color-scheme: dark;
 }
 
 /* 2. BASE ---------------------------------------------------------- */
@@ -127,7 +165,7 @@ p { margin: 0 0 1rem; }
   text-decoration: none;
   color: var(--tinta);
 }
-.logo span { color: var(--rojo); }
+.logo span { color: var(--rojo-texto); }
 
 .nav {
   display: flex;
@@ -145,8 +183,8 @@ p { margin: 0 0 1rem; }
   border-bottom: 2px solid transparent;
   transition: color .2s, border-color .2s;
 }
-.nav a:hover { color: var(--rojo); }
-.nav a.activo { color: var(--rojo); border-bottom-color: var(--rojo); }
+.nav a:hover { color: var(--rojo-texto); }
+.nav a.activo { color: var(--rojo-texto); border-bottom-color: var(--rojo-texto); }
 
 .menu-toggle {
   display: none;
@@ -156,6 +194,31 @@ p { margin: 0 0 1rem; }
   color: var(--tinta);
 }
 .menu-toggle svg { fill: currentColor; }
+
+/* El menú queda a la derecha, junto al botón de tema */
+.encabezado__interno nav { margin-left: auto; }
+
+/* Botón para cambiar entre modo claro y oscuro */
+.tema-toggle {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 20px;
+  border: 1px solid var(--linea);
+  border-radius: 50%;
+  background: none;
+  color: var(--tinta);
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+}
+.tema-toggle:hover { border-color: var(--rojo-texto); color: var(--rojo-texto); }
+.tema-toggle svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Transición suave de colores al cambiar de tema */
+body, .encabezado {
+  transition: background-color .3s, color .3s, border-color .3s;
+}
 
 /* 5. BOTONES, CHIPS Y FORMULARIOS ---------------------------------- */
 .btn {
@@ -173,17 +236,17 @@ p { margin: 0 0 1rem; }
 }
 .btn:active { transform: translateY(1px); }
 
-.btn--primario { background: var(--rojo); color: var(--blanco); }
+.btn--primario { background: var(--rojo); color: var(--texto-claro); }
 .btn--primario:hover { background: var(--rojo-oscuro); }
 
 .btn--secundario { background: var(--blanco); color: var(--tinta); border-color: var(--tinta); }
 .btn--secundario:hover { background: var(--tinta); color: var(--blanco); }
 
-.btn--peligro { background: var(--blanco); color: var(--rojo); border-color: var(--rojo); }
+.btn--peligro { background: var(--blanco); color: var(--rojo-texto); border-color: var(--rojo-texto); }
 .btn--peligro:hover { background: var(--rojo-suave); }
 
-.btn--claro { background: var(--blanco); color: var(--tinta); }
-.btn--claro:hover { background: var(--linea); }
+.btn--claro { background: var(--texto-claro); color: var(--superficie-oscura); }
+.btn--claro:hover { background: var(--texto-claro-suave); }
 
 .btn--bloque { width: 100%; margin-top: 14px; padding: 9px; }
 
@@ -214,7 +277,7 @@ p { margin: 0 0 1rem; }
 /* Formularios */
 .campo { margin-bottom: 18px; }
 .campo label { display: block; font-weight: 600; font-size: .85rem; margin-bottom: 6px; }
-.campo label .req { color: var(--rojo); }
+.campo label .req { color: var(--rojo-texto); }
 
 .campo input,
 .campo textarea,
@@ -235,12 +298,12 @@ p { margin: 0 0 1rem; }
 .campo select:focus { outline: none; border-color: var(--tinta); background: var(--blanco); }
 
 .campo .ayuda { display: block; font-size: .78rem; color: var(--gris); margin-top: 5px; }
-.campo .error { display: none; font-size: .8rem; color: var(--rojo); margin-top: 5px; font-weight: 500; }
+.campo .error { display: none; font-size: .8rem; color: var(--rojo-texto); margin-top: 5px; font-weight: 500; }
 
 /* Estado inválido: lo activa JavaScript agregando la clase .invalido */
 .campo.invalido input,
 .campo.invalido textarea,
-.campo.invalido select { border-color: var(--rojo); background: var(--rojo-suave); }
+.campo.invalido select { border-color: var(--rojo-texto); background: var(--rojo-suave); }
 .campo.invalido .error { display: block; }
 .campo.invalido .ayuda { display: none; }
 
@@ -255,7 +318,7 @@ p { margin: 0 0 1rem; }
   margin-bottom: 22px;
 }
 .alerta--exito { background: var(--verde-suave); color: var(--verde); border: 1px solid #BFE5CB; }
-.alerta--marca { background: var(--rojo-suave); color: var(--rojo); border: 1px dashed #F2A7B3; }
+.alerta--marca { background: var(--rojo-suave); color: var(--rojo-texto); border: 1px dashed #F2A7B3; }
 
 /* 6. TARJETA DE NOTICIA -------------------------------------------- */
 .tarjeta {
@@ -307,13 +370,13 @@ p { margin: 0 0 1rem; }
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--rojo);
+  color: var(--rojo-texto);
   margin-bottom: 8px;
 }
 
 .tarjeta__titulo { font-size: 1.08rem; font-weight: 800; margin-bottom: 8px; }
 .tarjeta__titulo a { text-decoration: none; }
-.tarjeta__titulo a:hover { color: var(--rojo); }
+.tarjeta__titulo a:hover { color: var(--rojo-texto); }
 
 .tarjeta__resumen { color: var(--gris); font-size: .86rem; line-height: 1.5; flex: 1; }
 
@@ -327,7 +390,7 @@ p { margin: 0 0 1rem; }
   color: var(--gris);
 }
 
-.ver-mas { color: var(--rojo); font-weight: 600; text-decoration: none; }
+.ver-mas { color: var(--rojo-texto); font-weight: 600; text-decoration: none; }
 .ver-mas:hover { text-decoration: underline; }
 
 /* 7. SECCIONES ----------------------------------------------------- */
@@ -335,7 +398,7 @@ p { margin: 0 0 1rem; }
 /* Hero (Inicio) */
 .hero { text-align: center; padding: 88px 0 72px; border-bottom: 1px solid var(--linea); }
 .hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800; max-width: 760px; margin: 0 auto 18px; }
-.hero h1 em { font-style: normal; color: var(--rojo); }
+.hero h1 em { font-style: normal; color: var(--rojo-texto); }
 .hero p { color: var(--gris); max-width: 540px; margin: 0 auto 30px; font-size: 1.02rem; }
 .hero__botones { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 
@@ -361,19 +424,19 @@ p { margin: 0 0 1rem; }
   justify-content: space-between;
   gap: 24px;
   padding: 36px 40px;
-  background: var(--tinta);
-  color: var(--blanco);
+  background: var(--superficie-oscura);
+  color: var(--texto-claro);
   border-left: 5px solid var(--rojo);
   border-radius: var(--radio);
 }
 .cta h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; }
-.cta p { margin: 0; color: #D1D5DB; }
+.cta p { margin: 0; color: var(--texto-claro-suave); }
 
 /* Detalle de la noticia */
 .migas { font-size: .8rem; color: var(--gris); margin-bottom: 18px; }
 .migas a { text-decoration: none; }
-.migas a:hover { color: var(--rojo); }
-.migas [aria-current] { color: var(--rojo); font-weight: 600; }
+.migas a:hover { color: var(--rojo-texto); }
+.migas [aria-current] { color: var(--rojo-texto); font-weight: 600; }
 
 .articulo h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 18px; }
 
@@ -392,7 +455,7 @@ p { margin: 0 0 1rem; }
 
 .articulo__imagen { width: 100%; aspect-ratio: 16 / 8.5; object-fit: cover; border-radius: 8px; margin-bottom: 30px; }
 
-.articulo__cuerpo p { font-size: 1rem; line-height: 1.75; color: #27272A; }
+.articulo__cuerpo p { font-size: 1rem; line-height: 1.75; color: var(--tinta); }
 
 .articulo__acciones { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0 24px; }
 .articulo__acciones .btn--primario.activo { background: var(--tinta); }
@@ -405,7 +468,7 @@ p { margin: 0 0 1rem; }
   border-left: 3px solid var(--rojo);
   border-radius: 0 var(--radio) var(--radio) 0;
 }
-.fuente a { color: var(--rojo); font-weight: 600; }
+.fuente a { color: var(--rojo-texto); font-weight: 600; }
 
 /* Contacto */
 .contacto-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: start; }
@@ -427,7 +490,7 @@ p { margin: 0 0 1rem; }
 /* Acerca de */
 .acerca__texto { max-width: 680px; }
 .acerca__texto p { font-size: 1rem; }
-.acerca__texto .destacado { color: #4B5563; }
+.acerca__texto .destacado { color: var(--gris); }
 
 .glosario { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .termino {
@@ -437,25 +500,25 @@ p { margin: 0 0 1rem; }
   border-radius: var(--radio);
   box-shadow: var(--sombra);
 }
-.termino h3 { font-size: 1rem; color: var(--rojo); }
+.termino h3 { font-size: 1rem; color: var(--rojo-texto); }
 .termino p { font-size: .84rem; color: var(--gris); margin: 0; }
 
 /* 8. FOOTER -------------------------------------------------------- */
 .pie {
-  background: var(--tinta);
-  color: #D1D5DB;
+  background: var(--superficie-oscura);
+  color: var(--texto-claro-suave);
   border-top: 3px solid var(--rojo);
   padding-top: 48px;
   margin-top: 40px;
 }
 .pie__grid { display: grid; grid-template-columns: 2fr 1fr 1.2fr; gap: 40px; padding-bottom: 36px; }
-.pie h3 { font-size: .95rem; color: var(--blanco); margin-bottom: 14px; }
+.pie h3 { font-size: .95rem; color: var(--texto-claro); margin-bottom: 14px; }
 .pie p { font-size: .85rem; margin-top: 12px; max-width: 360px; }
 .pie ul { list-style: none; padding: 0; margin: 0; }
 .pie li { font-size: .85rem; margin-bottom: 9px; }
 .pie a { text-decoration: none; }
-.pie a:hover { color: var(--blanco); text-decoration: underline; }
-.logo--claro { color: var(--blanco); font-size: 1.1rem; }
+.pie a:hover { color: var(--texto-claro); text-decoration: underline; }
+.logo--claro { color: var(--texto-claro); font-size: 1.1rem; }
 .pie__legal { border-top: 1px solid #2A2A2A; padding: 18px 24px; text-align: center; font-size: .78rem; color: #9CA3AF; }
 
 /* 9. MODAL, AVISO Y ESTADOS ---------------------------------------- */
@@ -466,6 +529,8 @@ p { margin: 0 0 1rem; }
   padding: 0;
   border: 0;
   border-radius: 10px;
+  background: var(--blanco);
+  color: var(--tinta);
   box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
 }
 .modal::backdrop { background: rgba(17, 17, 17, .55); }
@@ -489,8 +554,8 @@ p { margin: 0 0 1rem; }
   padding: 12px 20px;
   font-size: .88rem;
   font-weight: 500;
-  color: var(--blanco);
-  background: var(--tinta);
+  color: var(--texto-claro);
+  background: var(--superficie-oscura);
   border-left: 4px solid var(--rojo);
   border-radius: var(--radio);
   box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
@@ -535,6 +600,8 @@ p { margin: 0 0 1rem; }
   .contenedor { padding: 0 16px; }
   .seccion { padding: 40px 0; }
   .menu-toggle { display: block; margin-left: auto; }
+  .tema-toggle { margin-left: 12px; }
+  .encabezado__interno nav { margin-left: 0; }
 
   /* El menú se oculta y aparece al tocar la hamburguesa */
   .nav {
@@ -551,7 +618,7 @@ p { margin: 0 0 1rem; }
   }
   .nav.abierto { display: flex; }
   .nav a { display: block; padding: 12px 0; border-bottom: 1px solid var(--linea); }
-  .nav a.activo { border-bottom-color: var(--rojo); }
+  .nav a.activo { border-bottom-color: var(--rojo-texto); }
 
   .hero { padding: 56px 0 48px; }
   .valores { grid-template-columns: 1fr; }

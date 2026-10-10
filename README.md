@@ -35,6 +35,7 @@ pulso-ia/
 │   ├── datos.js             Capa de datos: localStorage, CRUD y favoritos
 │   ├── componentes.js       Header, footer, tarjeta de noticia y utilidades
 │   ├── validacion.js        Validación reutilizable de formularios
+│   ├── tema.js              Modo claro / oscuro (aporte propio)
 │   ├── inicio.js | noticias.js | detalle.js | favoritos.js | contacto.js
 ├── data/
 │   └── noticias.json   Semilla de datos (modelo de la Entrega 1)
@@ -52,6 +53,18 @@ pulso-ia/
 | 5.5 Contacto | Campos obligatorios, validación del formato del correo, un error junto a cada campo y un mensaje de confirmación. |
 | 5.6 Acerca de | Texto de presentación y Glosario IA (LLM, Prompt, Token, Alucinación). |
 | 6. Modelo de datos | En la primera carga se lee `data/noticias.json` y se copia a localStorage. Desde ahí, leer, crear y eliminar se hace sobre localStorage. |
+
+## Aporte propio: modo oscuro
+
+Un botón con ícono de luna o sol en el encabezado cambia todo el sitio entre modo claro y oscuro.
+
+- **Primera visita:** se respeta la preferencia del sistema operativo (`prefers-color-scheme`).
+- **Elección del usuario:** se guarda en `localStorage` (clave `pulsoia_tema`) y se mantiene en todas las páginas y visitas.
+- **Sin parpadeo:** `js/tema.js` se carga en el `<head>` para aplicar el tema antes de que el navegador pinte la página.
+- **Cómo funciona:** el script pone `data-tema="oscuro"` en `<html>`, y `css/estilos.css` redefine las variables de color bajo `[data-tema="oscuro"]`. Como todos los componentes usan variables, no fue necesario modificarlos uno por uno.
+- **Accesibilidad:** el botón cambia su `aria-label` ("Cambiar a modo oscuro" o "Cambiar a modo claro"). En modo oscuro el rojo de los textos se aclara (`--rojo-texto`) para cumplir el contraste mínimo de 4.5:1 (WCAG AA).
+
+**Cómo probarlo:** toca la luna arriba a la derecha y navega a otra página: el tema se mantiene. Para volver a seguir la preferencia del sistema, borra la clave `pulsoia_tema` del almacenamiento local.
 
 ## Tecnologías
 

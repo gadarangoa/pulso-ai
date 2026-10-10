@@ -43,7 +43,9 @@ function leerParametro(nombre) {
 const ICONOS = {
   corazon: `<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 4.3 2.4.7-1.3 2.2-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>`,
   papelera: `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></svg>`,
-  menu: `<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>`
+  menu: `<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>`,
+  luna: `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>`,
+  sol: `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>`
 };
 
 /* ---------- Header ---------- */
@@ -74,6 +76,7 @@ function renderEncabezado() {
       <nav aria-label="Navegación principal">
         <ul class="nav" id="menuPrincipal">${enlaces}</ul>
       </nav>
+      <button class="tema-toggle" id="temaToggle" type="button"></button>
     </div>`;
 
   // Menú hamburguesa en pantallas pequeñas
@@ -83,6 +86,27 @@ function renderEncabezado() {
     const abierto = menu.classList.toggle('abierto');
     boton.setAttribute('aria-expanded', abierto);
   });
+
+  // Botón de modo claro / oscuro (la lógica está en js/tema.js)
+  const botonTema = document.getElementById('temaToggle');
+  pintarBotonTema(botonTema);
+  botonTema.addEventListener('click', () => {
+    const tema = alternarTema();
+    pintarBotonTema(botonTema);
+    mostrarAviso(tema === 'oscuro' ? 'Modo oscuro activado' : 'Modo claro activado');
+  });
+}
+
+/**
+ * El botón muestra el ícono del tema al que se va a cambiar:
+ * luna en modo claro, sol en modo oscuro.
+ */
+function pintarBotonTema(boton) {
+  const oscuro = obtenerTema() === 'oscuro';
+  const texto = oscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+  boton.innerHTML = oscuro ? ICONOS.sol : ICONOS.luna;
+  boton.setAttribute('aria-label', texto);
+  boton.title = texto;
 }
 
 /* ---------- Footer ---------- */
