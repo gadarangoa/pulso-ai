@@ -1,4 +1,4 @@
-# Pulso IA — Entrega previa 2 (Semana 5)
+# Pulso IA — Entrega final (Semana 7)
 
 Plataforma web de noticias sobre inteligencia artificial.
 Módulo de Desarrollo Front-end, Politécnico Grancolombiano.
@@ -35,7 +35,7 @@ pulso-ia/
 │   ├── datos.js             Capa de datos: localStorage, CRUD y favoritos
 │   ├── componentes.js       Header, footer, tarjeta de noticia y utilidades
 │   ├── validacion.js        Validación reutilizable de formularios
-│   ├── tema.js              Modo claro / oscuro (aporte propio)
+│   ├── tema.js              Modo claro / oscuro (mejora de la entrega final)
 │   ├── inicio.js | noticias.js | detalle.js | favoritos.js | contacto.js
 ├── data/
 │   └── noticias.json   Semilla de datos (modelo de la Entrega 1)
@@ -54,7 +54,13 @@ pulso-ia/
 | 5.6 Acerca de | Texto de presentación y Glosario IA (LLM, Prompt, Token, Alucinación). |
 | 6. Modelo de datos | En la primera carga se lee `data/noticias.json` y se copia a localStorage. Desde ahí, leer, crear y eliminar se hace sobre localStorage. |
 
-## Aporte propio: modo oscuro
+## Mejoras de la entrega final
+
+Funcionalidades agregadas después de la Entrega 2. Cada una indica qué integrante la desarrolló.
+
+### Modo claro / oscuro
+
+**Desarrollado por:** Gustavo Adolfo Arango Angulo
 
 Un botón con ícono de luna o sol en el encabezado cambia todo el sitio entre modo claro y oscuro.
 

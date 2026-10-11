@@ -1,5 +1,5 @@
 /*
- * tema.js — Modo claro / oscuro (aporte propio)
+ * tema.js — Modo claro / oscuro (mejora de la entrega final)
  * ------------------------------------------------------------------
  * ¿Por qué este archivo se carga en el <head> y no al final del <body>?
  * Porque debe aplicar el tema ANTES de que el navegador pinte la página.
